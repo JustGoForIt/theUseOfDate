@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>团购——限时抢</title>
+	<style type="text/css">
+	.content3{
+		background: url(images/product.jpg) no-repeat;
+		width: 1200px;
+		height: 398px;
+		margin: 0 auto;
+		position: relative;
+	}
+	.time{
+		position: absolute;
+		top: 122px;
+		left: 46%;
+		line-height: 22px;
+		font-size: 14px;
+	}
+	</style>
+	<script type="text/javascript">
+		window.onload = function(){
+			showTime();
+		}
+		function showTime( ){
+
+		
+			var endtime = new Date('2016/5/15,12:20:12');//结束时间
+			var nowtime = new Date();
+			var lefttime = parseInt((endtime.getTime()-nowtime.getTime())/1000);
+			var d = parseInt(lefttime/(24*60*60));
+			var h = parseInt((lefttime/(60*60))%24);
+			var m = parseInt((lefttime/60)%60);
+			var s = parseInt(lefttime%60);
+		
+			if(lefttime<=0){
+				document.getElementById('LeftTime').innerHTML='团购结束';
+			}
+				document.getElementById('LeftTime').innerHTML=d+'天'+h+'小时'+m+'分钟'+s+'秒';
+			setTimeout(showTime,500);
+		}
+
+	</script>
+</head>
+<body>
+	<div class="content3">
+		<div class="time">还剩<span id="LeftTime"></span></div>
+	</div>
+</body>
+</html>

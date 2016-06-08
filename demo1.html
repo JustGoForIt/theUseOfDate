@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>当前系统时间</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript">
+	window.onload = function() {
+		showTime();
+	}
+	//对分钟和秒进行空位补的
+	function checkTime(i){
+		if(i<10){
+			i = "0" + i;
+		}
+		return i;
+	}
+	function showTime() {
+		var myDate = new Date();
+		//获取年份
+		var year = myDate.getFullYear();
+		//获取月份，注意月份从零开始
+		var month = myDate.getMonth()+1;
+		//获取日
+		var date = myDate.getDate();
+		//星期几 ，获取到数字0-6
+		var day = myDate.getDay();//0-6
+		//小时
+		var hour =myDate.getHours();
+		//分钟
+		var minute = myDate.getMinutes();
+		minute = checkTime(minute);
+		//秒
+		var second = myDate.getSeconds();
+		second = checkTime(second);
+
+		var weekday = new Array(7);
+		weekday[0] = "星期日";
+		weekday[1] = "星期一";
+		weekday[2] = "星期二";
+		weekday[3] = "星期三";
+		weekday[4] = "星期四";
+		weekday[5] = "星期五";
+		weekday[6] = "星期六";
+		document.getElementById("show").innerHTML = year +"年"+month+"月"+date+"日" + weekday[day]
+		+hour +":"+minute+":"+second;
+		//每隔500秒调用一次函数
+		setTimeout(showTime,500);
+	}
+	</script>
+</head>
+<body>
+	<div class="content1">
+		<div id="show">显示当前时间</div>
+	</div>
+</body>
+</html>
